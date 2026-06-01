@@ -569,12 +569,16 @@ body {
     width: 100%;
     height: min(42vh, 320px);
     min-height: 200px;
-    background: var(--hero-image) center top / cover no-repeat;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(10, 22, 40, 0.18) 100%),
+      var(--hero-image) center top / cover no-repeat;
+    filter: brightness(1.14) contrast(1.03);
   }
 
   .hero--home .hero-content {
     padding: 1.15rem 1rem 2rem;
     max-width: none;
+    background: linear-gradient(180deg, #1a3358 0%, #0f1f3d 100%);
   }
 
   .hero--home .hero-tag,
@@ -582,7 +586,7 @@ body {
   .hero--home .hero-desc,
   .hero--home h1 {
     color: var(--white);
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   }
 
   .hero--home .hero-tag {
