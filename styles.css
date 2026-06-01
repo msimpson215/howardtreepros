@@ -6,6 +6,7 @@
   --white: #ffffff;
   --gray-bg: #eef1f4;
   --text: #1a1a1a;
+  --hero-image: url("logo.png");
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,46 +26,67 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, auto);
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(to bottom, rgba(10,22,40,0.92), rgba(10,22,40,0.4));
+  gap: 0.75rem 1rem;
+  padding: 0.65rem 1rem;
+  background: rgba(10, 22, 40, 0.94);
+  backdrop-filter: blur(6px);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   text-decoration: none;
   color: var(--white);
+  min-width: 0;
+  justify-self: start;
+}
+
+.logo-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: center 35%;
+  border: 2px solid var(--white);
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .logo-mark {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--lime);
-  color: var(--navy-deep);
-  font-weight: 900;
-  font-size: 0.7rem;
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
   border: 2px solid var(--white);
+}
+
+.logo-mark .logo-img {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .logo-text {
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: clamp(0.8rem, 2.8vw, 0.95rem);
   letter-spacing: 0.02em;
+  line-height: 1.15;
 }
 
 .main-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1rem;
+  justify-content: center;
+  gap: 0.25rem 0.75rem;
+  justify-self: center;
 }
 
 .main-nav a {
@@ -89,6 +111,9 @@ body {
   border-radius: 4px;
   font-weight: 800;
   line-height: 1.2;
+  justify-self: end;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .btn-call-header .btn-label { font-size: 0.7rem; text-transform: uppercase; }
@@ -96,16 +121,29 @@ body {
 
 .btn-call-header:hover { background: #9ed44f; }
 
-/* Hero — uses your repo image; rename file to hero.jpg if you upload the mockup */
+/* Hero */
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding: 6rem 1.5rem 3rem;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 5.5rem 0 0;
+  background: var(--navy-deep);
+  position: relative;
+}
+
+.hero-banner {
+  display: none;
+}
+
+.hero--home {
   background:
     linear-gradient(105deg, rgba(10,22,40,0.88) 0%, rgba(10,22,40,0.45) 55%, rgba(10,22,40,0.25) 100%),
-    url("ChatGPT%20Image%20May%2015,%202026,%2002_35_34%20PM.png") center / cover no-repeat;
-  position: relative;
+    var(--hero-image) center / cover no-repeat;
+  min-height: 100vh;
+  padding: 6rem 1.5rem 3rem;
+  flex-direction: row;
+  align-items: center;
 }
 
 .hero-content {
@@ -142,7 +180,9 @@ body {
 
 .hero-desc {
   font-size: 1rem;
-  opacity: 0.95;
+  font-weight: 600;
+  color: var(--white);
+  opacity: 1;
   margin-bottom: 1.5rem;
   max-width: 42ch;
 }
@@ -236,7 +276,7 @@ body {
 .why-photo {
   background:
     linear-gradient(135deg, rgba(139,197,63,0.2), rgba(15,31,61,0.3)),
-    url("ChatGPT%20Image%20May%2015,%202026,%2002_35_34%20PM.png") center / cover no-repeat;
+    var(--hero-image) center / cover no-repeat;
   min-height: 280px;
 }
 
@@ -342,6 +382,12 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.footer-brand .logo-img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.5rem;
+}
+
 .footer-grid h4 {
   color: var(--lime);
   font-size: 0.75rem;
@@ -380,7 +426,7 @@ body {
   padding: 7rem 1.5rem 2.5rem;
   background:
     linear-gradient(105deg, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.55) 100%),
-    url("ChatGPT%20Image%20May%2015,%202026,%2002_35_34%20PM.png") center / cover no-repeat;
+    var(--hero-image) center / cover no-repeat;
   color: var(--white);
 }
 
@@ -478,9 +524,96 @@ body {
 
 .main-nav a.active { color: var(--lime); }
 
-@media (max-width: 768px) {
-  .site-header { justify-content: center; }
-  .main-nav { order: 3; width: 100%; justify-content: center; }
+@media (max-width: 900px) {
+  .main-nav {
+    display: none;
+  }
+
+  .site-header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.65rem;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .logo-img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .btn-call-header {
+    margin-left: auto;
+    padding: 0.4rem 0.7rem;
+  }
+
+  .btn-call-header .btn-label { font-size: 0.65rem; }
+  .btn-call-header .btn-phone { font-size: 0.8rem; }
+
+  .hero--home {
+    min-height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 4.25rem 0 0;
+    background: var(--navy-deep);
+  }
+
+  .hero--home .hero-banner {
+    display: block;
+    width: 100%;
+    height: min(42vh, 320px);
+    min-height: 200px;
+    background: var(--hero-image) center top / cover no-repeat;
+  }
+
+  .hero--home .hero-content {
+    padding: 1.15rem 1rem 2rem;
+    max-width: none;
+  }
+
+  .hero--home .hero-tag,
+  .hero--home .hero-lead,
+  .hero--home .hero-desc,
+  .hero--home h1 {
+    color: var(--white);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  }
+
+  .hero--home .hero-tag {
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
+  .hero--home .hero-lead {
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+
+  .hero--home .hero-desc {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.45;
+    max-width: none;
+  }
+
+  .hero--home h1 {
+    font-size: clamp(1.65rem, 7vw, 2.35rem);
+  }
+
+  .page-hero {
+    padding-top: 5rem;
+    background:
+      linear-gradient(180deg, rgba(10,22,40,0.5) 0%, rgba(10,22,40,0.88) 100%),
+      var(--hero-image) center top / cover no-repeat;
+  }
+
   .why { grid-template-columns: 1fr; }
   .cta-note { margin-left: 0; }
 }
