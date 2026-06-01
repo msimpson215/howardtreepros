@@ -1,7 +1,7 @@
-# Render Blueprint — sync with existing service name in dashboard if different
+# Live: https://howardtreepros-1.onrender.com
 services:
   - type: web
-    name: howard-tree-pros
+    name: howardtreepros-1
     runtime: docker
     plan: free
     branch: main
