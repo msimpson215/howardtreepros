@@ -1,0 +1,11 @@
+# https://render.com/docs/blueprint-spec
+# Connect repo at https://dashboard.render.com → New → Blueprint
+services:
+  - type: web
+    name: howard-tree-pros
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 10000
