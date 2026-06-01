@@ -372,6 +372,112 @@ body {
   margin: 0 auto;
 }
 
+/* Inner pages */
+.page-hero {
+  min-height: 42vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 7rem 1.5rem 2.5rem;
+  background:
+    linear-gradient(105deg, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.55) 100%),
+    url("ChatGPT%20Image%20May%2015,%202026,%2002_35_34%20PM.png") center / cover no-repeat;
+  color: var(--white);
+}
+
+.page-hero > div {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.page-hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.page-hero .hero-tag { margin-bottom: 0.5rem; }
+
+.page-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.page-content h2 {
+  color: var(--navy);
+  font-size: 1.35rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 2rem 0 0.75rem;
+}
+
+.page-content h2:first-of-type { margin-top: 0; }
+
+.page-content p,
+.page-content li {
+  color: #333;
+  margin-bottom: 0.85rem;
+}
+
+.page-content ul {
+  margin: 0 0 1.25rem 1.25rem;
+}
+
+.page-content li::marker { color: var(--lime-dark); }
+
+.page-content .btn-primary { margin-top: 0.5rem; }
+
+.page-content a { color: var(--navy); font-weight: 700; }
+
+.service-grid a.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.service-grid a.card-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.contact-card {
+  background: var(--white);
+  padding: 1.75rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.contact-card h3 {
+  color: var(--navy);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.contact-card a {
+  color: var(--navy);
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-decoration: none;
+}
+
+.contact-card a:hover { color: var(--lime-dark); }
+
+.main-nav a.active { color: var(--lime); }
+
 @media (max-width: 768px) {
   .site-header { justify-content: center; }
   .main-nav { order: 3; width: 100%; justify-content: center; }
