@@ -1,11 +1,9 @@
-# https://render.com/docs/blueprint-spec
-# Connect repo at https://dashboard.render.com → New → Blueprint
+# Render Blueprint — sync with existing service name in dashboard if different
 services:
   - type: web
     name: howard-tree-pros
     runtime: docker
     plan: free
+    branch: main
+    autoDeployTrigger: commit
     healthCheckPath: /
-    envVars:
-      - key: PORT
-        value: 10000
