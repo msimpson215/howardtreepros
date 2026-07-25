@@ -28,7 +28,7 @@ jobs:
           mkdir -p _site
           cp .nojekyll _site/
           cp *.html styles.css _site/
-          cp logo.png "ChatGPT Image May 15, 2026, 02_35_34 PM.png" _site/
+          cp logo.png logo-mark.jpg crew-hero.jpg hero-truck.jpg _site/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
