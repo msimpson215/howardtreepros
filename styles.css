@@ -122,7 +122,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   background:
     linear-gradient(105deg, rgba(10, 22, 40, 0.82) 0%, rgba(10, 22, 40, 0.42) 52%, rgba(10, 22, 40, 0.22) 100%),
-    var(--hero-image) center 30% / cover no-repeat;
+    var(--hero-image) center 18% / cover no-repeat;
 }
 
 .hero-banner { display: none; }
@@ -296,9 +296,9 @@ img { max-width: 100%; display: block; }
 
 .why-photo {
   background:
-    linear-gradient(135deg, rgba(139, 197, 63, 0.12), rgba(15, 31, 61, 0.18)),
-    var(--hero-image) center 25% / cover no-repeat;
-  min-height: 320px;
+    linear-gradient(135deg, rgba(139, 197, 63, 0.08), rgba(15, 31, 61, 0.12)),
+    var(--hero-image) center 15% / cover no-repeat;
+  min-height: 420px;
 }
 
 .why-content {
