@@ -117,15 +117,16 @@ img { max-width: 100%; display: block; }
 
 /* Hero */
 .hero--home {
-  min-height: 100vh;
+  min-height: 92vh;
   display: flex;
   align-items: center;
-  padding: 6.5rem 1.5rem 3.5rem;
+  padding: 7rem 1.5rem 3.5rem;
   position: relative;
   overflow: hidden;
+  /* Keep the top of the photo in frame so the climber's head is never cropped */
   background:
-    linear-gradient(105deg, rgba(10, 22, 40, 0.48) 0%, rgba(10, 22, 40, 0.18) 50%, rgba(10, 22, 40, 0.06) 100%),
-    var(--crew-image) center 48% / cover no-repeat;
+    linear-gradient(105deg, rgba(10, 22, 40, 0.62) 0%, rgba(10, 22, 40, 0.24) 52%, rgba(10, 22, 40, 0.06) 100%),
+    var(--crew-image) center top / cover no-repeat;
 }
 
 .hero-banner { display: none; }
@@ -606,11 +607,10 @@ img { max-width: 100%; display: block; }
   .hero--home .hero-banner {
     display: block;
     width: 100%;
-    height: min(52vh, 420px);
-    min-height: 260px;
+    aspect-ratio: 1402 / 1122;
+    height: auto;
     background:
-      linear-gradient(180deg, rgba(10, 22, 40, 0.05) 0%, rgba(10, 22, 40, 0.28) 100%),
-      var(--crew-image) center 48% / cover no-repeat;
+      var(--crew-image) center top / cover no-repeat;
   }
 
   .hero--home .hero-content {
