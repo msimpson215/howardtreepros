@@ -7,11 +7,11 @@
   --gray-bg: #eef1f4;
   --text: #1a1a1a;
   --muted: #444;
-  /* Girl crew photo — used with the 45-year section */
+  /* Girl crew photo — full hero, pulled back to show truck + branding */
   --crew-image: url("crew-hero.jpg");
-  /* Original Howard truck/job photo — used on hero / other spots */
+  /* Original Howard job/truck photo — lower section only */
   --howard-image: url("howard-truck.jpg");
-  --hero-image: var(--howard-image);
+  --hero-image: var(--crew-image);
   --header-height: 4.5rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -124,8 +124,8 @@ img { max-width: 100%; display: block; }
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(105deg, rgba(10, 22, 40, 0.55) 0%, rgba(10, 22, 40, 0.22) 48%, rgba(10, 22, 40, 0.08) 100%),
-    var(--hero-image) center 18% / cover no-repeat;
+    linear-gradient(105deg, rgba(10, 22, 40, 0.48) 0%, rgba(10, 22, 40, 0.18) 50%, rgba(10, 22, 40, 0.06) 100%),
+    var(--crew-image) center 48% / cover no-repeat;
 }
 
 .hero-banner { display: none; }
@@ -298,15 +298,9 @@ img { max-width: 100%; display: block; }
   min-height: 420px;
 }
 
-.why-photo {
-  /* Girl photo pulled back so Howard Tree Pros truck branding is visible */
-  background:
-    var(--crew-image) center center / contain no-repeat;
-  background-color: #142010;
-  min-height: 480px;
-}
-
+.why-photo,
 .why-photo--howard {
+  /* Lower section: original Howard truck / job photo (not the girl again) */
   background:
     linear-gradient(135deg, rgba(139, 197, 63, 0.08), rgba(15, 31, 61, 0.12)),
     var(--howard-image) center 40% / cover no-repeat;
@@ -612,11 +606,11 @@ img { max-width: 100%; display: block; }
   .hero--home .hero-banner {
     display: block;
     width: 100%;
-    height: min(48vh, 380px);
-    min-height: 240px;
+    height: min(52vh, 420px);
+    min-height: 260px;
     background:
-      linear-gradient(180deg, rgba(10, 22, 40, 0.05) 0%, rgba(10, 22, 40, 0.35) 100%),
-      var(--hero-image) center 15% / cover no-repeat;
+      linear-gradient(180deg, rgba(10, 22, 40, 0.05) 0%, rgba(10, 22, 40, 0.28) 100%),
+      var(--crew-image) center 48% / cover no-repeat;
   }
 
   .hero--home .hero-content {
@@ -647,12 +641,9 @@ img { max-width: 100%; display: block; }
   }
 
   .why { grid-template-columns: 1fr; }
-  .why-photo {
-    min-height: 300px;
-    background-size: contain;
-    background-position: center center;
-  }
+  .why-photo,
   .why-photo--howard {
+    min-height: 280px;
     background-size: cover;
     background-position: center 40%;
   }
