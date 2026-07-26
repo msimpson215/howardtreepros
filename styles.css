@@ -7,6 +7,13 @@
   --gray-bg: #eef1f4;
   --text: #1a1a1a;
   --muted: #444;
+  /* Button green dark enough for white lettering to read clearly */
+  --cta-green: #2f7d12;
+  --cta-green-hover: #3c9a17;
+  /* Storm / emergency red */
+  --danger: #d32b1e;
+  --danger-hover: #ef3c2c;
+  --danger-soft: #ff6b5e;
   /* Girl crew photo — full hero, pulled back to show truck + branding */
   --crew-image: url("crew-hero.jpg");
   /* Original Howard job/truck photo — lower section only */
@@ -94,13 +101,19 @@ img { max-width: 100%; display: block; }
 .main-nav a:hover,
 .main-nav a.active { color: var(--lime); }
 
+/* Storm Cleanup stays red in the nav on every page */
+.main-nav a.nav-storm { color: var(--danger-soft); }
+
+.main-nav a.nav-storm:hover,
+.main-nav a.nav-storm.active { color: #ff9d93; }
+
 .btn-call-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  background: var(--lime);
-  color: var(--navy-deep);
+  background: var(--cta-green);
+  color: #ffffff;
   padding: 0.45rem 1rem;
   border-radius: 4px;
   font-weight: 800;
@@ -108,42 +121,39 @@ img { max-width: 100%; display: block; }
   justify-self: end;
   flex-shrink: 0;
   white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
   transition: background 0.2s var(--ease), transform 0.2s var(--ease);
 }
 
-.btn-call-header .btn-label { font-size: 0.7rem; text-transform: uppercase; }
-.btn-call-header .btn-phone { font-size: 0.95rem; }
-.btn-call-header:hover { background: #9ed44f; transform: translateY(-1px); }
+.btn-call-header .btn-label { font-size: 0.7rem; text-transform: uppercase; color: #ffffff; }
+.btn-call-header .btn-phone { font-size: 1rem; color: #ffffff; }
+.btn-call-header:hover { background: var(--cta-green-hover); transform: translateY(-1px); }
 
 /* Hero */
-/* Split hero: copy on the left, full crew photo on the right.
-   The photo column keeps the source aspect ratio, so nothing is cropped
-   on a laptop, a 30-inch monitor, or anything between. */
+/* Full-width hero photo. Height tracks viewport width and is anchored to the
+   top of the photo, so her head stays in frame and the truck still shows. */
 .hero--home {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: stretch;
-  padding-top: var(--header-height);
-  background: var(--navy-deep);
+  display: flex;
+  align-items: flex-start;
+  min-height: min(66vw, 96vh);
+  /* Copy sits just under the header instead of floating in the canopy */
+  padding: 7rem clamp(1.5rem, 6vw, 6rem) 3rem;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(100deg, rgba(6, 16, 30, 0.9) 0%, rgba(6, 16, 30, 0.66) 34%, rgba(6, 16, 30, 0.22) 62%, rgba(6, 16, 30, 0.05) 100%),
+    var(--crew-image) center top / cover no-repeat;
 }
 
-.hero-banner {
-  display: block;
-  grid-area: 1 / 2;
-  width: 100%;
-  aspect-ratio: 1402 / 1122;
-  max-height: 84vh;
-  background: var(--crew-image) center top / cover no-repeat;
-}
+.hero-banner { display: none; }
 
 .hero-content {
-  grid-area: 1 / 1;
-  align-self: center;
-  justify-self: end;
+  position: relative;
+  z-index: 2;
   width: 100%;
-  max-width: 34rem;
-  padding: 2.5rem clamp(1.5rem, 3.5vw, 3.5rem) 2.5rem clamp(1.5rem, 4vw, 5rem);
+  max-width: min(36rem, 52vw);
   color: var(--white);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -194,7 +204,7 @@ img { max-width: 100%; display: block; }
 
 .btn-primary {
   display: inline-block;
-  background: var(--lime-dark);
+  background: var(--cta-green);
   color: #ffffff;
   font-weight: 800;
   text-decoration: none;
@@ -203,13 +213,28 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-size: clamp(0.9rem, 1.05vw, 1.05rem);
+  text-shadow: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
   transition: background 0.2s var(--ease), transform 0.2s var(--ease);
 }
 
 .btn-primary:hover {
-  background: var(--lime);
+  background: var(--cta-green-hover);
   color: #ffffff;
   transform: translateY(-1px);
+}
+
+/* Emergency / storm calls to action */
+.btn-primary--emergency,
+.theme-storm .btn-primary {
+  background: var(--danger);
+  color: #ffffff;
+}
+
+.btn-primary--emergency:hover,
+.theme-storm .btn-primary:hover {
+  background: var(--danger-hover);
+  color: #ffffff;
 }
 
 .emergency-highlight {
@@ -443,9 +468,13 @@ img { max-width: 100%; display: block; }
   text-decoration: none;
   font-size: 0.9rem;
   margin-bottom: 0.35rem;
+  overflow-wrap: anywhere;
 }
 
 .footer-grid a:hover { color: var(--lime); }
+
+.footer-grid a.nav-storm { color: var(--danger-soft); }
+.footer-grid a.nav-storm:hover { color: #ff9d93; }
 
 .footer-grid p { font-size: 0.9rem; }
 
@@ -525,6 +554,14 @@ img { max-width: 100%; display: block; }
 
 .page-content a { color: var(--navy); font-weight: 700; }
 
+/* Buttons keep white lettering even inside prose blocks */
+.page-content a.btn-primary,
+.why-content a.btn-primary,
+.hero a.btn-primary,
+.contact-card a.btn-primary {
+  color: #ffffff;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -561,13 +598,18 @@ img { max-width: 100%; display: block; }
 }
 
 .contact-card a {
+  display: inline-block;
+  max-width: 100%;
   color: var(--navy);
   font-weight: 800;
-  font-size: 1.15rem;
+  /* Keep the long gmail address inside the card */
+  font-size: clamp(0.95rem, 2.1vw, 1.15rem);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
   text-decoration: none;
 }
 
-.contact-card a:hover { color: var(--lime-dark); }
+.contact-card a:hover { color: var(--cta-green); }
 
 .page-content.tight-top { padding-top: 1.25rem; }
 
@@ -662,19 +704,39 @@ img { max-width: 100%; display: block; }
   .cta-note { margin-left: 0; }
 }
 
-/* Large desktop / 30-inch-plus monitors: give the photo more of the width
-   so the left copy panel doesn't turn into a big empty block */
+/* Storm Cleanup page: swap the green accents for emergency red */
+.theme-storm {
+  --lime: var(--danger-soft);
+  --lime-dark: #b0231a;
+}
+
+.theme-storm .cta-bar {
+  background: var(--danger);
+}
+
+.theme-storm .cta-inner h2,
+.theme-storm .cta-phone,
+.theme-storm .cta-note {
+  color: #ffffff;
+}
+
+.theme-storm .page-hero {
+  background:
+    linear-gradient(105deg, rgba(70, 10, 5, 0.82) 0%, rgba(150, 26, 16, 0.42) 100%),
+    var(--howard-image) center 40% / cover no-repeat;
+}
+
+.theme-storm .page-content h2 {
+  color: var(--danger-dark, #a81f16);
+}
+
+.theme-storm .page-content a:not(.btn-primary) {
+  color: var(--danger);
+}
+
+/* Large desktop / 30-inch-plus monitors */
 @media (min-width: 1700px) {
-  .hero--home {
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  }
-
   .hero-content {
-    max-width: 42rem;
-    justify-self: center;
-  }
-
-  .hero-banner {
-    max-height: 86vh;
+    max-width: 40rem;
   }
 }
