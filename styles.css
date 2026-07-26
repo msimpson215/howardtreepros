@@ -116,25 +116,33 @@ img { max-width: 100%; display: block; }
 .btn-call-header:hover { background: #9ed44f; transform: translateY(-1px); }
 
 /* Hero */
+/* Split hero: copy on the left, full crew photo on the right.
+   The photo column keeps the source aspect ratio, so nothing is cropped
+   on a laptop, a 30-inch monitor, or anything between. */
 .hero--home {
-  min-height: 92vh;
-  display: flex;
-  align-items: center;
-  padding: 7rem 1.5rem 3.5rem;
-  position: relative;
-  overflow: hidden;
-  /* Keep the top of the photo in frame so the climber's head is never cropped */
-  background:
-    linear-gradient(105deg, rgba(10, 22, 40, 0.62) 0%, rgba(10, 22, 40, 0.24) 52%, rgba(10, 22, 40, 0.06) 100%),
-    var(--crew-image) center top / cover no-repeat;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  padding-top: var(--header-height);
+  background: var(--navy-deep);
 }
 
-.hero-banner { display: none; }
+.hero-banner {
+  display: block;
+  grid-area: 1 / 2;
+  width: 100%;
+  aspect-ratio: 1402 / 1122;
+  max-height: 84vh;
+  background: var(--crew-image) center top / cover no-repeat;
+}
 
 .hero-content {
-  position: relative;
-  z-index: 2;
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: end;
+  width: 100%;
   max-width: 34rem;
+  padding: 2.5rem clamp(1.5rem, 3.5vw, 3.5rem) 2.5rem clamp(1.5rem, 4vw, 5rem);
   color: var(--white);
 }
 
@@ -163,25 +171,25 @@ img { max-width: 100%; display: block; }
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  margin-bottom: 0.85rem;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  margin-bottom: 0.8rem;
 }
 
 .hero h1 {
-  font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+  font-size: clamp(2rem, 3.5vw, 3.75rem);
   font-weight: 900;
-  line-height: 1.08;
+  line-height: 1.05;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.85rem;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.9rem;
 }
 
 .hero-desc {
-  font-size: 1.05rem;
+  font-size: clamp(1.05rem, 1.15vw, 1.3rem);
   font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
-  margin-bottom: 1.6rem;
-  max-width: 38ch;
+  margin-bottom: 1.75rem;
+  max-width: 36ch;
 }
 
 .btn-primary {
@@ -190,11 +198,11 @@ img { max-width: 100%; display: block; }
   color: #ffffff;
   font-weight: 800;
   text-decoration: none;
-  padding: 0.9rem 1.55rem;
+  padding: 1rem 1.85rem;
   border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  font-size: 0.9rem;
+  font-size: clamp(0.9rem, 1.05vw, 1.05rem);
   transition: background 0.2s var(--ease), transform 0.2s var(--ease);
 }
 
@@ -595,49 +603,53 @@ img { max-width: 100%; display: block; }
   .btn-call-header .btn-label { font-size: 0.65rem; }
   .btn-call-header .btn-phone { font-size: 0.8rem; }
 
+  /* Phones and small tablets: photo on top, copy directly under it */
   .hero--home {
-    min-height: auto;
-    flex-direction: column;
-    align-items: stretch;
-    padding: 4.25rem 0 0;
-    background: var(--navy-deep);
+    grid-template-columns: 1fr;
+    padding-top: 4.25rem;
     animation: none;
   }
 
   .hero--home .hero-banner {
-    display: block;
-    width: 100%;
-    aspect-ratio: 1402 / 1122;
-    height: auto;
-    background:
-      var(--crew-image) center top / cover no-repeat;
+    grid-area: auto;
+    max-height: none;
   }
 
   .hero--home .hero-content {
-    padding: 1.25rem 1rem 2rem;
+    grid-area: auto;
+    justify-self: stretch;
+    padding: 1.4rem 1.15rem 2.25rem;
     max-width: none;
     background: linear-gradient(180deg, #1a3358 0%, #0f1f3d 100%);
     animation: none;
   }
 
   .hero--home .hero-brand {
-    font-size: 1rem;
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
   }
 
   .hero--home .hero-desc {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     max-width: none;
+    margin-bottom: 1.4rem;
   }
 
   .hero--home h1 {
-    font-size: clamp(1.7rem, 7vw, 2.35rem);
+    font-size: clamp(2rem, 8.5vw, 2.85rem);
+  }
+
+  .hero--home .btn-primary {
+    display: block;
+    text-align: center;
+    font-size: 1rem;
   }
 
   .page-hero {
     padding-top: 5rem;
     background:
       linear-gradient(180deg, rgba(10, 22, 40, 0.2) 0%, rgba(10, 22, 40, 0.55) 100%),
-      var(--hero-image) center 15% / cover no-repeat;
+      var(--howard-image) center 40% / cover no-repeat;
   }
 
   .why { grid-template-columns: 1fr; }
@@ -648,4 +660,21 @@ img { max-width: 100%; display: block; }
     background-position: center 40%;
   }
   .cta-note { margin-left: 0; }
+}
+
+/* Large desktop / 30-inch-plus monitors: give the photo more of the width
+   so the left copy panel doesn't turn into a big empty block */
+@media (min-width: 1700px) {
+  .hero--home {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  }
+
+  .hero-content {
+    max-width: 42rem;
+    justify-self: center;
+  }
+
+  .hero-banner {
+    max-height: 86vh;
+  }
 }
