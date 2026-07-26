@@ -7,8 +7,11 @@
   --gray-bg: #eef1f4;
   --text: #1a1a1a;
   --muted: #444;
-  --hero-image: url("crew-hero.jpg");
-  --truck-image: url("hero-truck.jpg");
+  /* Girl crew photo — used with the 45-year section */
+  --crew-image: url("crew-hero.jpg");
+  /* Original Howard truck/job photo — used on hero / other spots */
+  --howard-image: url("howard-truck.jpg");
+  --hero-image: var(--howard-image);
   --header-height: 4.5rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -296,9 +299,18 @@ img { max-width: 100%; display: block; }
 }
 
 .why-photo {
+  /* Girl photo pulled back so Howard Tree Pros truck branding is visible */
+  background:
+    linear-gradient(135deg, rgba(139, 197, 63, 0.05), rgba(15, 31, 61, 0.1)),
+    var(--crew-image) center 58% / 100% auto no-repeat;
+  background-color: #1a2a14;
+  min-height: 460px;
+}
+
+.why-photo--howard {
   background:
     linear-gradient(135deg, rgba(139, 197, 63, 0.08), rgba(15, 31, 61, 0.12)),
-    var(--hero-image) center 15% / cover no-repeat;
+    var(--howard-image) center 40% / cover no-repeat;
   min-height: 420px;
 }
 
@@ -452,7 +464,7 @@ img { max-width: 100%; display: block; }
   align-items: flex-end;
   padding: 7rem 1.5rem 2.5rem;
   background:
-    linear-gradient(105deg, rgba(10, 22, 40, 0.88) 0%, rgba(10, 22, 40, 0.5) 100%),
+    linear-gradient(105deg, rgba(10, 22, 40, 0.62) 0%, rgba(10, 22, 40, 0.28) 100%),
     var(--hero-image) center 18% / cover no-repeat;
   color: var(--white);
 }
@@ -631,11 +643,18 @@ img { max-width: 100%; display: block; }
   .page-hero {
     padding-top: 5rem;
     background:
-      linear-gradient(180deg, rgba(10, 22, 40, 0.45) 0%, rgba(10, 22, 40, 0.88) 100%),
+      linear-gradient(180deg, rgba(10, 22, 40, 0.2) 0%, rgba(10, 22, 40, 0.55) 100%),
       var(--hero-image) center 15% / cover no-repeat;
   }
 
   .why { grid-template-columns: 1fr; }
-  .why-photo { min-height: 280px; }
+  .why-photo {
+    min-height: 300px;
+    background-size: cover;
+    background-position: center 55%;
+  }
+  .why-photo--howard {
+    background-position: center 40%;
+  }
   .cta-note { margin-left: 0; }
 }
