@@ -301,10 +301,9 @@ img { max-width: 100%; display: block; }
 .why-photo {
   /* Girl photo pulled back so Howard Tree Pros truck branding is visible */
   background:
-    linear-gradient(135deg, rgba(139, 197, 63, 0.05), rgba(15, 31, 61, 0.1)),
-    var(--crew-image) center 58% / 100% auto no-repeat;
-  background-color: #1a2a14;
-  min-height: 460px;
+    var(--crew-image) center center / contain no-repeat;
+  background-color: #142010;
+  min-height: 480px;
 }
 
 .why-photo--howard {
@@ -650,10 +649,11 @@ img { max-width: 100%; display: block; }
   .why { grid-template-columns: 1fr; }
   .why-photo {
     min-height: 300px;
-    background-size: cover;
-    background-position: center 55%;
+    background-size: contain;
+    background-position: center center;
   }
   .why-photo--howard {
+    background-size: cover;
     background-position: center 40%;
   }
   .cta-note { margin-left: 0; }
