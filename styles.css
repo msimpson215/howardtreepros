@@ -88,6 +88,20 @@ img { max-width: 100%; display: block; }
   justify-self: center;
 }
 
+/* Hamburger: hidden on desktop, drives the mobile menu with no JS.
+   The checkbox stays in the DOM (not display:none) so the label can toggle it. */
+.nav-toggle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-toggle-label {
+  display: none;
+}
+
 .main-nav a {
   color: var(--white);
   text-decoration: none;
@@ -648,6 +662,54 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 900px) {
   .main-nav { display: none; }
+
+  .nav-toggle-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    order: 3;
+    width: 44px;
+    height: 44px;
+    padding: 10px 9px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .nav-toggle-label span {
+    display: block;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+  }
+
+  .btn-call-header { order: 2; }
+
+  /* Open state: full-width dropdown under the header */
+  .nav-toggle:checked ~ .main-nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 0;
+    padding: 0.35rem 1.15rem 0.9rem;
+    background: rgba(10, 22, 40, 0.98);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  }
+
+  .nav-toggle:checked ~ .main-nav a {
+    padding: 0.85rem 0.25rem;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
   .site-header {
     display: flex;
