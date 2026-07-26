@@ -238,8 +238,30 @@ img { max-width: 100%; display: block; }
 }
 
 .emergency-highlight {
-  color: #ff3b3b;
+  color: var(--danger);
   font-weight: 900;
+}
+
+/* Storm Cleanup service card runs red so emergencies stand out */
+.card-link--storm .hex {
+  background: var(--danger);
+}
+
+.card-link--storm .hex-icon {
+  stroke: #ffffff;
+}
+
+.card-link--storm h3 {
+  color: var(--danger);
+}
+
+.card-link--storm p {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.card-link--storm article {
+  border: 2px solid rgba(211, 43, 30, 0.35);
 }
 
 /* Services */
@@ -663,7 +685,7 @@ img { max-width: 100%; display: block; }
   .hero--home .hero-banner {
     display: block;
     width: 100%;
-    aspect-ratio: 1402 / 1122;
+    aspect-ratio: 1292 / 1122;
     max-height: none;
     background: var(--crew-image) center top / cover no-repeat;
   }
