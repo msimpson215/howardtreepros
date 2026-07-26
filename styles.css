@@ -495,8 +495,8 @@ img { max-width: 100%; display: block; }
   align-items: flex-end;
   padding: 7rem 1.5rem 2.5rem;
   background:
-    linear-gradient(105deg, rgba(10, 22, 40, 0.62) 0%, rgba(10, 22, 40, 0.28) 100%),
-    var(--hero-image) center 18% / cover no-repeat;
+    linear-gradient(105deg, rgba(10, 22, 40, 0.7) 0%, rgba(10, 22, 40, 0.34) 100%),
+    var(--howard-image) center 40% / cover no-repeat;
   color: var(--white);
 }
 
@@ -564,9 +564,9 @@ img { max-width: 100%; display: block; }
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
-  max-width: 900px;
+  max-width: 980px;
   margin: 0 auto;
   padding: 3rem 1.5rem 1rem;
 }
@@ -611,6 +611,12 @@ img { max-width: 100%; display: block; }
 
 .contact-card a:hover { color: var(--cta-green); }
 
+/* Email is long — keep it on one line inside the card */
+.contact-card a[href^="mailto:"] {
+  font-size: clamp(0.8rem, 1.35vw, 1rem);
+  letter-spacing: -0.01em;
+}
+
 .page-content.tight-top { padding-top: 1.25rem; }
 
 .page-content .phone-strong {
@@ -645,24 +651,29 @@ img { max-width: 100%; display: block; }
   .btn-call-header .btn-label { font-size: 0.65rem; }
   .btn-call-header .btn-phone { font-size: 0.8rem; }
 
-  /* Phones and small tablets: photo on top, copy directly under it */
+  /* Phones and small tablets: whole photo on top, copy directly under it */
   .hero--home {
-    grid-template-columns: 1fr;
-    padding-top: 4.25rem;
+    display: block;
+    min-height: 0;
+    padding: 4.25rem 0 0;
+    background: var(--navy-deep);
     animation: none;
   }
 
   .hero--home .hero-banner {
-    grid-area: auto;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1402 / 1122;
     max-height: none;
+    background: var(--crew-image) center top / cover no-repeat;
   }
 
   .hero--home .hero-content {
-    grid-area: auto;
-    justify-self: stretch;
-    padding: 1.4rem 1.15rem 2.25rem;
+    width: auto;
     max-width: none;
+    padding: 1.4rem 1.15rem 2.25rem;
     background: linear-gradient(180deg, #1a3358 0%, #0f1f3d 100%);
+    text-shadow: none;
     animation: none;
   }
 
